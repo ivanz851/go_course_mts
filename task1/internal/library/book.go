@@ -50,6 +50,6 @@ func (b *Book) SetId(id uint32) {
 }
 
 func (b *Book) GetInfo() string {
-	return fmt.Sprintf("Title: '%s', Author: %s, Publication year: %d", b.Title, b.Author,
-		b.PublicationYear)
+	return fmt.Sprintf("Title: '%s', Author: %s, Publication year: %d", b.Title(), b.Author(),
+		b.PublicationYear())
 }

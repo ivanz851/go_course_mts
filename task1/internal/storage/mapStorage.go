@@ -1,6 +1,8 @@
 package storage
 
-import "task1/library"
+import (
+	"task1/internal/library"
+)
 
 type MapStorage struct {
 	books map[uint32]*library.Book
