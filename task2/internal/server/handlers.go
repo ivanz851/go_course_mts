@@ -51,7 +51,7 @@ func DecodeHandler(writer http.ResponseWriter, request *http.Request) {
 func HardOpHandler(writer http.ResponseWriter, request *http.Request) {
 	switch request.Method {
 	case "GET":
-		sleepTime := rand.Intn(16) + 18
+		sleepTime := rand.Intn(11) + 10
 		time.Sleep(time.Duration(sleepTime) * time.Second)
 
 		status := http.StatusOK

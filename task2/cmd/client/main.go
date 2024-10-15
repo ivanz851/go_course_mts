@@ -2,6 +2,7 @@ package main
 
 import (
 	"bytes"
+	"context"
 	"encoding/json"
 	"fmt"
 	"io"
@@ -13,6 +14,7 @@ import (
 const (
 	baseURL       = "http://localhost:8080"
 	clientTimeout = 60 * time.Second
+	hardOpTimeout = 15 * time.Second
 )
 
 func main() {
@@ -74,7 +76,10 @@ func decodeString(client *http.Client, inputString string) (string, error) {
 }
 
 func performHardOp(client *http.Client) error {
-	req, err := http.NewRequest("GET", baseURL+"/hard-op", nil)
+	ctx, cancel := context.WithTimeout(context.Background(), hardOpTimeout)
+	defer cancel()
+
+	req, err := http.NewRequestWithContext(ctx, "GET", baseURL+"/hard-op", nil)
 	if err != nil {
 		return err
 	}
